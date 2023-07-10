@@ -131,9 +131,12 @@ export default function Home() {
           <div className="bg-indigo-100 p-3 rounded-full flex items-center justify-center">
             <FolderOpen className="w-5 h-5 text-indigo-800" />
           </div>
-          <div className="text-sm text-zinc-400 flex gap-2 dark:text-zinc-200">
+          <Link
+            href="https://github.com/marvitphy/bytecloud"
+            className="text-sm text-zinc-400 flex gap-2 dark:text-zinc-200"
+          >
             Source Code <Code className="w-5 h-5" />
-          </div>
+          </Link>
         </div>
 
         <div>
