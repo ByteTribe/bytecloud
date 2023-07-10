@@ -16,9 +16,9 @@ export default function Home() {
           </div>
           <Link
             href="https://github.com/marvitphy/bytecloud"
-            className="text-sm text-zinc-400 flex gap-2 "
+            className="text-sm text-zinc-400 flex gap-2 hover:text-zinc-600 transition-all"
           >
-            Source Code <Code className="w-5 h-5" />
+            <Code className="w-5 h-5" /> Source Code
           </Link>
         </div>
 

@@ -1,7 +1,7 @@
 import { uploadFile } from "@/lib/supabase";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { Copy, PlusIcon, Trash } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FileIcon } from "react-file-icon";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,6 +15,11 @@ interface UploadFileList {
   files: File[];
 }
 export const UploadFileList = ({ files }: UploadFileList) => {
+  const [fileList, setFileList] = useState<File[]>(files);
+
+  useEffect(() => {
+    setFileList(files);
+  }, [files]);
   const [uploadList, setUploadList] = useState<IUpload[] | null>(null);
   const notify = () =>
     toast.success("Url copied!", {
@@ -27,6 +32,7 @@ export const UploadFileList = ({ files }: UploadFileList) => {
       progress: undefined,
       theme: "light",
     });
+
   const handleUpload = async (file: File, position: number) => {
     const fileName = file.name;
     const fileExtension = fileName.split(".").pop();
@@ -111,12 +117,22 @@ export const UploadFileList = ({ files }: UploadFileList) => {
       newArr.splice(idx, 1);
       return newArr;
     });
+
+    setFileList((prev) => {
+      if (!prev) return [];
+      let newArr = [...prev];
+      let idx = newArr.findIndex(
+        (item) => item.name === fileList[position].name
+      );
+      newArr.splice(idx, 1);
+      return newArr;
+    });
   };
 
   return (
     <>
       <div className="space-y-3 max-h-[250px] overflow-y-auto">
-        {files.map((file, index) => (
+        {fileList.map((file, index) => (
           <div
             key={index}
             className="w-full p-3 border border-zinc-300  rounded-xl flex items-center justify-between"
@@ -185,7 +201,10 @@ export const UploadFileList = ({ files }: UploadFileList) => {
               <Tooltip.Provider>
                 <Tooltip.Root>
                   <Tooltip.Trigger asChild>
-                    <button className="text-xs bg-red-100 p-2 active:bg-red-300  transition-all hover:scale-110 rounded-2xl text-red-800">
+                    <button
+                      onClick={() => removeFile(index)}
+                      className="text-xs bg-red-100 p-2 active:bg-red-300  transition-all hover:scale-110 rounded-2xl text-red-800"
+                    >
                       <Trash className={`w-3 h-3`} />
                     </button>
                   </Tooltip.Trigger>
