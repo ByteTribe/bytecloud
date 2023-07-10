@@ -215,7 +215,7 @@ export default function Home() {
                   className={`text-xs  px-3 rounded-2xl py-1 ${
                     fileIsUploaded(index)
                       ? "text-emerald-800 bg-emerald-100 dark:text-emerald-100 dark:bg-emerald-800"
-                      : "text-indigo-800 bg-indigo-100"
+                      : "text-indigo-800 bg-indigo-100 dark:bg-indigo-500 dark:text-indigo-100 "
                   }`}
                 >
                   {fileIsUploading(index) == true
