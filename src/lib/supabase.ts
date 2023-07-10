@@ -1,14 +1,7 @@
-import { createClient } from "@supabase/supabase-js";
-import { config } from "dotenv";
+import supabase from "@/config/supabase";
 import { v4 } from "uuid";
-config({});
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL ?? "",
-  process.env.NEXT_PUBLIC_SUPABASE_API_KEY ?? ""
-);
-const CDNURL =
-  "https://pqbnoyezospypjajwdzi.supabase.co/storage/v1/object/public/thinktalk/";
 
+const CDNURL = process.env.NEXT_PUBLIC_SUPABASE_CDNURL;
 interface IUpload {
   file: File;
   ext: string;
