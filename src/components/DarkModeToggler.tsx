@@ -1,14 +1,12 @@
-import { useDarkModeContext } from "@/context/DarkMode.context";
+import { useDarkMode } from "@/context/DarkMode.context";
+import * as Toggle from "@radix-ui/react-toggle";
 
 export function DarkModeToggler() {
-  const { isDarkMode, toggleDarkMode } = useDarkModeContext();
+  const { darkMode, toggleDarkMode } = useDarkMode();
 
   return (
-    <button
-      className="px-4 py-2 bg-gray-200 dark:bg-gray-800 rounded-md"
-      onClick={toggleDarkMode}
-    >
-      {isDarkMode ? "Modo Claro" : "Modo Escuro"}
-    </button>
+    <Toggle.Root className="h-8 w-10 rounded-md  bg-violet-600 hover:scale-110 transition-all hover:bg-violet-500" onClick={toggleDarkMode}>
+        {darkMode ? "☀️" : "🌙"}
+    </Toggle.Root>
   );
 }
