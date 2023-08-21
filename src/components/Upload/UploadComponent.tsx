@@ -79,13 +79,13 @@ export const UploadComponent = () => {
         <div>
           <Upload
             className={`w-10 h-10  transition-all ${
-              isDragging ? "text-indigo-400 scale-110" : "text-zinc-400  "
+              isDragging ? "text-indigo-300 scale-110" : "text-zinc-400 dark:text-gray-200 "
             }`}
           />
         </div>
         <div
           className={`text-sm transition-all ${
-            isDragging ? "text-indigo-400" : "text-zinc-400 "
+            isDragging ? "text-indigo-300" : "text-zinc-400 dark:text-gray-200 "
           }`}
         >
           Drag files here to upload
