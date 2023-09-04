@@ -32,3 +32,4 @@ export const uploadFile = async ({
     fileName: id,
   };
 };
+
