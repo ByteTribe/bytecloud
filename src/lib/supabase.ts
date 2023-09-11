@@ -14,7 +14,6 @@ interface IResponse {
 }
 
 export const uploadFile = async ({
-  ext,
   file,
   contentType,
 }: IUpload): Promise<IResponse> => {
