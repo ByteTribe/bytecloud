@@ -1,6 +1,5 @@
 import { uploadFile } from "@/lib/supabase";
 import { NextResponse } from "next/server";
-import { MIMEType } from "util";
 
 export async function POST(request: Request) {
     const data = await request.formData();
