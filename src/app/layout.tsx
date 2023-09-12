@@ -5,7 +5,7 @@ import { DarkModeProvider } from '@/context/DarkMode.context'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const meta: Metadata = {
+export const metadata: Metadata = {
   title: "ByteCloud",
   description: "The cloud of ByteTribe",
   icons: {

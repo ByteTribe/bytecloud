@@ -9,7 +9,7 @@ import { DarkModeToggler } from "@/components/DarkModeToggler";
 import useSWRSubscription from "swr/subscription";
 import { Metadata } from "next";
 
-export const meta: Metadata = {
+export const metadata: Metadata = {
   title: "ByteCloud",
   description: "The cloud of ByteTribe",
   icons: {
