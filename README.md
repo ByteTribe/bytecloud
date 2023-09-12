@@ -7,3 +7,16 @@
 This is a [Next.js](https://nextjs.org/) application to upload files using Supabase Storage.
 
 [See it running on Vercel](https://bytecloud.vercel.app/)
+
+
+## API ENDPOINT
+
+### POST -> /upload
+#### Query Params
+  - w (width) *required*
+  - h (height) *required*
+  - m (method)
+  - x (crop coordinate) 
+  - y (crop coordinate)
+
+#### example  => domain.com/upload?w=372&h=346&m=crop&x=470&y=100
