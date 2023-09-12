@@ -18,7 +18,9 @@ interface ext {
 
 export const uploadFile = async ({
   file
-}: compressImageParams): Promise<IResponse> => {
+}: {
+  file: File
+}): Promise<IResponse> => {
   const id = v4();
   const { error } = await supabase.storage
     .from("thinktalk")

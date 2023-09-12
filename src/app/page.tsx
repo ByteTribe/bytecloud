@@ -8,25 +8,8 @@ import { FileIcon, defaultStyles } from "react-file-icon";
 import { DarkModeToggler } from "@/components/DarkModeToggler";
 import useSWRSubscription from "swr/subscription";
 export default function Home() {
-  const { data, error } = useSWRSubscription(
-    "ws://localhost:3001/",
-    (key, { next }) => {
-      const socket = new WebSocket(key);
-      socket.addEventListener("message", (event) => {
-        next(null, event.data);
-        console.log(event);
-      });
 
-      return () => {
-       
-        socket.close();
-      };
-    }
-  );
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
 
-  console.log(data);
   return (
     <main className="px-5 md:px-0 flex min-h-screen gap-5 flex-col items-center justify-start py-10 md:py-0 md:justify-center dark:bg-slate-800 transition-all">
       <div className="absolute top-4 right-4">
