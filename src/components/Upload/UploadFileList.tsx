@@ -61,7 +61,6 @@ export const UploadFileList = ({ files }: UploadFileList) => {
     try {
       const { url } = await uploadFile({
         contentType: file.type,
-        ext: fileExtension ?? "",
         file,
       });
 
