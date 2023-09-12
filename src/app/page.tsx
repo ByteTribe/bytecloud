@@ -6,11 +6,32 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import { FileIcon, defaultStyles } from "react-file-icon";
 import { DarkModeToggler } from "@/components/DarkModeToggler";
-
+import useSWRSubscription from "swr/subscription";
 export default function Home() {
+  const { data, error } = useSWRSubscription(
+    "ws://localhost:3001/",
+    (key, { next }) => {
+      const socket = new WebSocket(key);
+      socket.addEventListener("message", (event) => {
+        next(null, event.data);
+        console.log(event);
+      });
+
+      return () => {
+       
+        socket.close();
+      };
+    }
+  );
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
+
+  console.log(data);
   return (
     <main className="px-5 md:px-0 flex min-h-screen gap-5 flex-col items-center justify-start py-10 md:py-0 md:justify-center dark:bg-slate-800 transition-all">
-      <div className="absolute top-4 right-4"><DarkModeToggler /></div>
+      <div className="absolute top-4 right-4">
+        <DarkModeToggler />
+      </div>
       <div className="w-full md:w-2/4 h-auto p-4  border border-zinc-300  rounded-2xl space-y-5">
         <div className="w-full flex items-center justify-between">
           <div className="bg-indigo-100  dark:bg-indigo-600 p-3 rounded-full flex items-center justify-center">
@@ -25,7 +46,9 @@ export default function Home() {
         </div>
 
         <div>
-          <p className="text-sm font-semibold text-zinc-700 dark:text-gray-300">Upload a file</p>
+          <p className="text-sm font-semibold text-zinc-700 dark:text-gray-300">
+            Upload a file
+          </p>
         </div>
         <UploadComponent />
       </div>
