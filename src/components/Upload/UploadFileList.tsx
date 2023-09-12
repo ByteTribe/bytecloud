@@ -61,10 +61,7 @@ export const UploadFileList = ({ files }: UploadFileList) => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const { url } = await fetch("/api/upload", {
-        method: "POST",
-        body: formData,
-      }).then((res) => res.json());
+      const { url } = await uploadFile({file});
 
       setUploadList((prev) => {
         if (!prev) {

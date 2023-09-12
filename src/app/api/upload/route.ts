@@ -1,16 +1,42 @@
-import { uploadFile } from "@/lib/supabase";
-import { NextResponse } from "next/server";
+import { uploadApiFile } from "@/lib/supabase";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
+  let uploadedFile;
   const data = await request.formData();
-  console.log(data);
-
+  const url = new URL(request.url);
+  const width = url.searchParams.get('w');
+  const height = url.searchParams.get('h');
+  const x = url.searchParams.get('x');
+  const y = url.searchParams.get('y');
+  const compressionMethod = url.searchParams.get('m');
   const file: File | null = data.get("file") as unknown as File;
-
+  
+  if(!width || !height) throw new Error("Width or height not provided");
   if (!file) return NextResponse.json({ success: false });
+  
+  const imageSize = {
+    width: parseInt(width),
+    height: parseInt(height)
+  }
 
-  const uploadedFile = await uploadFile({ file, contentType: file.type });
-
+  if(!compressionMethod)
+    uploadedFile = await uploadApiFile({file, imageSize, compressionMethod:""});
+  if(compressionMethod === 'crop') {
+   
+    if(!x || !y) throw new Error("Crop region not provided");
+    
+    const cropRegion = {
+      x: parseInt(x),
+      y: parseInt(y)
+    }
+    uploadedFile = await uploadApiFile({file, imageSize, compressionMethod, cropRegion});
+  } else if(compressionMethod === 'cover') {
+    uploadedFile = await uploadApiFile({file, imageSize, compressionMethod});
+  }
+  
+  if(!uploadedFile) throw new Error("Failed to upload file");
+  
   return NextResponse.json(
     { url: uploadedFile.url },
     {
