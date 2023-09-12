@@ -20,6 +20,8 @@
     "dotenv": "^16.3.1",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.9",
+    "gm": "^1.25.0",
+    "jimp": "^0.22.10",
     "lucide-react": "^0.259.0",
     "next": "13.4.9",
     "postcss": "8.4.25",
@@ -29,9 +31,11 @@
     "react-toastify": "^9.1.3",
     "tailwindcss": "3.3.2",
     "typescript": "5.1.6",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "vips": "^1.0.0"
   },
   "devDependencies": {
+    "@types/gm": "^1.25.1",
     "@types/react-file-icon": "^1.0.1",
     "@types/uuid": "^9.0.2"
   }
