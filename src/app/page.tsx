@@ -9,18 +9,7 @@ import { DarkModeToggler } from "@/components/DarkModeToggler";
 import useSWRSubscription from "swr/subscription";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "ByteCloud",
-  description: "The cloud of ByteTribe",
-  icons: {
-   
-  },
-  openGraph: {
-    images: [
-      'https://pqbnoyezospypjajwdzi.supabase.co/storage/v1/object/public/thinktalk/uploads/9903bd4a-11b0-4753-87c0-2ca8bfb6a6ff'
-    ]
-  }
-}
+
 export default function Home() {
 
 
