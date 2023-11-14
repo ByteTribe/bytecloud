@@ -58,7 +58,7 @@ export const UploadComponent = () => {
         onDragOver={handleDragOver}
         onDrop={handleDrop}
         className={`w-full rounded-xl cursor-pointer  h-auto py-10 border-2 gap-3 transition-colors ${
-          isDragging ? "border-indigo-300 " : "border-zinc-300"
+          isDragging ? "border-indigo-300 " : "border-zinc-300 dark:border-zinc-300/60"
         } border-dashed flex flex-col items-center justify-center`}
       >
         <input

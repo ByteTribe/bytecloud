@@ -59,11 +59,9 @@ export const UploadFileList = ({ files }: UploadFileList) => {
     if (!file) return null;
 
     try {
-      const { url } = await uploadFile({
-        contentType: file.type,
-        ext: fileExtension ?? "",
-        file,
-      });
+      const formData = new FormData();
+      formData.append("file", file);
+      const { url } = await uploadFile({file});
 
       setUploadList((prev) => {
         if (!prev) {
@@ -83,6 +81,7 @@ export const UploadFileList = ({ files }: UploadFileList) => {
         return newArr;
       });
     } catch (error) {
+      console.log(error);
       alert("Error on upload file");
     }
   };
