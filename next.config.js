@@ -2,8 +2,11 @@
 const nextConfig = {
     api: {
         bodyParser: {
-            sizeLimit: '20mb',
+            sizeLimit: '100mb',
         }
+    },
+    serverActions: {
+        bodySizeLimit: '100mb' // Set desired value here
     },
     async headers() {
         return [
